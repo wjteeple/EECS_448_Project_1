@@ -8,17 +8,20 @@
 //*********************************************************
 public class ClockerWriter
 {
-  public static void main(String[] args)
-  {
   int m_hour = 0;
-  int m_minutes = 0;
-  int m_seconds = 0;
+  int m_minute = 0;
+  int m_second = 0;
   int m_timeUpperBound = 0;
   bool m_timeZone = 0;
   
-  
+  public static void setTime(int hours, int minutes, int seconds)//sets the time with user input.
+  {
+	  m_hour = hours;
+	  m_minute = minutes;
+	  m_second = seconds;
   }
-  public static bool is24Hour(bool time)
+  
+  public static bool is24Hour(bool time)//sets the boundary for 24 hour clock or 12 hour clock.
   {
     if(time == true)
     {
@@ -28,5 +31,15 @@ public class ClockerWriter
     {
       m_timeUpperBound = 12;
     }
+  }
+  
+  public static void displayClock()//prints out the time of the clock
+  {
+	  System.out.println(m_hour + ":" + m_minute + ":" + m_second );
+  }
+  
+  public static void calculateTime()
+  {
+	  
   }
 }
