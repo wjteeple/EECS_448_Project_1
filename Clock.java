@@ -15,8 +15,8 @@ public class Clock
   int m_hour = 0;
   int m_minute = 0;
   int m_second = 0;
-  int m_timeUpperBound = 0;
-  bool m_timeZone = 0;
+  int m_timeUpperBound = 0;//tells if the clock is 24 hours or 12 hour clock
+  bool m_timeZone = true;//tells if the time is AM or PM
   long timeNow = 0;
   long timeLater = 0;
   
@@ -39,6 +39,18 @@ public class Clock
     }
   }
   
+  public static bool isAM(bool AM)//tells the if the time is AM or PM or 12 hour
+  {
+  	if(AM == true)
+  	{
+  	 m_timeZone = true;	
+  	}
+  	else
+  	{
+  	 m_timeZone = false;	
+  	}
+  }
+  
   public static void displayClock()//prints out the time of the clock
   {
 	  System.out.println(m_hour + ":" + m_minute + ":" + m_second );
@@ -47,5 +59,53 @@ public class Clock
   public static void calculateTime()
   {
 	  timeNow = System.currentTimeMillis();
+	  timeLater = (System.currentTimeMillis()+1000);
+	  while(timeNow != timeLater)
+	  {
+	  	timeNow = System.currentTimeMillis();
+	  }
+	  m_second += 1;
+	  if(m_second == 60)
+	  {
+	  	m_second = 0;
+	  	m_minute += 1;
+	  	if(m_minute == 60)
+	  	{
+	  		m_minute = 0;
+	  		m_hour +=1;
+	  		if(m_timeUpperBound = 24;)
+	  		{
+	  			if(((m_hour == 24) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time
+	  			{
+	  			 m_hour = 0;
+	  			}
+	  		}
+	  		else()
+	  		{
+	  			if(m_timeZone == true)
+	  			{
+	  				if(((m_hour ==12) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time zone
+	  				{
+	  					m_timeZone = false;	
+	  				}
+	  				else if(((m_hour ==13) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time
+	  				{
+	  				 m_hour = 1;	
+	  				}
+	  			}
+	  			else()
+	  			{
+	  				if(((m_hour ==12) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time zone
+	  				{
+	  					m_timeZone = true;	
+	  				}
+	  				else if(!((m_hour == 13) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time
+	  				{
+	  				 m_hour = 1;
+	  				}
+	  			}
+	  		}
+	  	}
+	  }
   }
 }
