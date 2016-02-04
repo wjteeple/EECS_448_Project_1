@@ -19,6 +19,7 @@ public class Clock
   bool m_timeZone = true;//tells if the time is AM or PM
   long timeNow = 0;
   long timeLater = 0;
+  String m_timeOfDay = "";
   
   public static void setTime(int hours, int minutes, int seconds)//sets the time with user input.
   {
@@ -43,24 +44,33 @@ public class Clock
   {
   	if(AM == true)
   	{
-  	 m_timeZone = true;	
+  	 m_timeZone = true;
+  	 m_timeOfDay = "A.M.";
   	}
   	else
   	{
   	 m_timeZone = false;	
+  	 m_timeOfDay = "P.M.";
   	}
   }
   
   public static void displayClock()//prints out the time of the clock
   {
-	  System.out.println(m_hour + ":" + m_minute + ":" + m_second );
+	 if(timeUpperBound == 24)
+	 {
+	 	System.out.println(m_hour + ":" + m_minute + ":" + m_second );
+	 }
+	 else()
+	 {
+	 	System.out.println(m_hour + ":" + m_minute + ":" + m_second + " " + m_timeOfDay);	
+	 }
   }
   
-  public static void calculateTime()
+  public static void calculateTime()//this calculates the time for the clock
   {
-	  timeNow = System.currentTimeMillis();
+	  timeNow = System.currentTimeMillis();//This grabs the system clock time in milliseconds
 	  timeLater = (System.currentTimeMillis()+1000);
-	  while(timeNow != timeLater)
+	  while(timeNow != timeLater)//This delays the process by one second
 	  {
 	  	timeNow = System.currentTimeMillis();
 	  }
@@ -84,18 +94,18 @@ public class Clock
 	  		{
 	  			if(m_timeZone == true)
 	  			{
-	  				if(((m_hour ==12) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time zone
+	  				if(((m_hour == 12) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time zone
 	  				{
 	  					m_timeZone = false;	
 	  				}
-	  				else if(((m_hour ==13) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time
+	  				else if(((m_hour == 13) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time
 	  				{
 	  				 m_hour = 1;	
 	  				}
 	  			}
 	  			else()
 	  			{
-	  				if(((m_hour ==12) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time zone
+	  				if(((m_hour == 12) && (m_minute == 0) && (m_second == 0)))//helps for the wrap around time zone
 	  				{
 	  					m_timeZone = true;	
 	  				}
