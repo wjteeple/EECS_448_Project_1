@@ -2,7 +2,7 @@
 // Assignment: Clock Project1 Clock.java file
 // Account: MichaelWang-6127
 //
-// Author: Michael Wang
+// Author: Michael Wang (Edited by Will Teeple)
 //
 // Date: 02/03/2016
 //*********************************************************
@@ -134,6 +134,7 @@ public class Clock
 	  		}
 	  	}
 	  }
+    isAM(m_timeZone);
   }
 
   public void initMenu() //wjt ; console menu for method testing
@@ -164,41 +165,42 @@ public class Clock
       }
     } while (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2);
 
-    do {
-      System.out.println("\nA.M. or P.M.?");
-      System.out.println("1. A.M.");
-      System.out.println("2. P.M.");
-      System.out.print("Your choice: ");
-      input = scanner.nextLine();
-      if (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2)
-      {
-        System.out.println("Invalid selection, please choose again.");
-      }
-    } while (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2);
-    if (Integer.parseInt(input) == 1)
-    {
-      isAM(true);
-    }
-    else
-    {
-      isAM(false);
-    }
-
-    System.out.println("\nLet's set the time.");
     if (m_timeUpperBound == 24)
     {
+      System.out.println("\nLet's set the time.");
       do {
         System.out.print("Hours: ");
         h = scanner.nextLine();
-        if (Integer.parseInt(h) < 0 || Integer.parseInt(h) > 24)
+        if (Integer.parseInt(h) < 0 || Integer.parseInt(h) > 23)
         {
           System.out.println("Invalid selection, please choose again.");
         }
-      } while (Integer.parseInt(h) < 0 || Integer.parseInt(h) > 24);
+      } while (Integer.parseInt(h) < 0 || Integer.parseInt(h) > 23);
     }
     else //if 12
     {
       do {
+        do {
+          System.out.println("\nA.M. or P.M.?");
+          System.out.println("1. A.M.");
+          System.out.println("2. P.M.");
+          System.out.print("Your choice: ");
+          input = scanner.nextLine();
+          if (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2)
+          {
+            System.out.println("Invalid selection, please choose again.");
+          }
+        } while (Integer.parseInt(input) != 1 && Integer.parseInt(input) != 2);
+        if (Integer.parseInt(input) == 1)
+        {
+          isAM(true);
+        }
+        else
+        {
+          isAM(false);
+        }
+
+        System.out.println("\nLet's set the time.");
         System.out.print("Hours: ");
         h = scanner.nextLine();
         if (Integer.parseInt(h) < 1 || Integer.parseInt(h) > 12)
@@ -230,7 +232,7 @@ public class Clock
 
     System.out.println("\nEverything looks good! Your clock will now begin.\n");
   }
-  
+
   public static void main(String[] args) //wjt ; test main
   {
     Clock clock = new Clock();
